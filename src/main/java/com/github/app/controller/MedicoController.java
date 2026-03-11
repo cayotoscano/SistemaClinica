@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.app.model.medico.DadosCadastroMedico;
 
-@RestController
+@RestController // SPRING WEB
 @RequestMapping("medicos")
 public class MedicoController {
     
