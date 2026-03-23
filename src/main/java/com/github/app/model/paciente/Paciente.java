@@ -1,8 +1,8 @@
-package com.github.app.model.medico;
+package com.github.app.model.paciente;
 
 import com.github.app.model.endereco.Endereco;
+import com.github.app.model.medico.Especialidade;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,34 +16,29 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-// clase modelo respnsavel por criar uma tabela e suas colunas no BD
-
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "medicos")
-public class Medico {
+@Table(name = "pacientes")
+public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
     private String nome;
+    private String cpf;
     private String email;
-    private String crm;
-
-    @Enumerated(EnumType.STRING)
-    private Especialidade especialidade;
+    private String telefone;
 
     @Embedded
     private Endereco endereco;
 
-    public Medico(DadosCadastroMedico dados) {
+    public Paciente(DadosCadastroPaciente dados) {
         this.nome = dados.nome();
+        this.cpf = dados.cpf();
         this.email = dados.email();
-        this.crm = dados.crm();
-        this.especialidade = dados.especialidade();        
+        this.telefone = dados.telefone();        
     }
-    
 }
