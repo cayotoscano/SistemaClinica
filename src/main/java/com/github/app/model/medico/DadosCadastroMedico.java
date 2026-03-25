@@ -2,12 +2,26 @@ package com.github.app.model.medico;
 
 import com.github.app.model.endereco.DadosCadastroEndereco;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public record DadosCadastroMedico(
-    String nome, 
-    String email, 
+
+    @NotBlank
+    String nome,
+    
+    @Email
+    @NotBlank
+    String email,
+    
+    
     String crm,
-    Especialidade especialidade
-    // DadosCadastroEndereco endereco
+
+    @NotNull @Valid
+    Especialidade especialidade,
+    DadosCadastroEndereco endereco
 
 
 ) {
