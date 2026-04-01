@@ -47,7 +47,7 @@ public class MedicoController {
     @PutMapping
     public void atualizar(@RequestBody DadosAtualizacaoMedico dados) {
         var medico = repository.getReferenceById(dados.id()); 
-
+        medico.atualizarInformacoes(dados);
 
     }
    
