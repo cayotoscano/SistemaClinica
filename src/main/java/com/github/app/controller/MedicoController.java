@@ -12,6 +12,9 @@ import com.github.app.model.medico.DadosCadastroMedico;
 import com.github.app.model.medico.DadosListagemMedico;
 import com.github.app.model.medico.Medico;
 import com.github.app.model.medico.MedicosRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -23,6 +26,7 @@ public class MedicoController {
     private MedicosRepository repository;
 
     @PostMapping
+    @Transactional
     public void cadastrar(@RequestBody DadosCadastroMedico dados) {
         repository.save(new Medico(dados));
     }
@@ -45,10 +49,24 @@ public class MedicoController {
     }
 
     @PutMapping
+    @Transactional
     public void atualizar(@RequestBody DadosAtualizacaoMedico dados) {
         var medico = repository.getReferenceById(dados.id()); 
         medico.atualizarInformacoes(dados);
-
     }
    
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Integer id) {
+        repository.getReferenceById(id);
+
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void alterarStatus(@PathVariable Integer id) {
+        var medico = repository.getReferenceById(id);
+        medico.exclusaoLogica();
+    }
+    
 }
