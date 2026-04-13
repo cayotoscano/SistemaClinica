@@ -1,6 +1,5 @@
 package com.github.app.model.medico;
 
-import jakarta.persistence.criteria.CriteriaBuilder.In;
 
 public record DadosListagemMedico(
     Integer id,

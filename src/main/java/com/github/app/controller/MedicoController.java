@@ -55,12 +55,12 @@ public class MedicoController {
         medico.atualizarInformacoes(dados);
     }
    
-    @DeleteMapping("/{id}")
-    @Transactional
-    public void excluir(@PathVariable Integer id) {
-        repository.getReferenceById(id);
+    // @DeleteMapping("/{id}")
+    // @Transactional
+    // public void excluir(@PathVariable Integer id) {
+    //     repository.deleteById(id);
 
-    }
+    // }
 
     @DeleteMapping("/{id}")
     @Transactional
