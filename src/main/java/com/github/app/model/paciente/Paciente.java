@@ -1,12 +1,9 @@
 package com.github.app.model.paciente;
 
 import com.github.app.model.endereco.Endereco;
-import com.github.app.model.medico.Especialidade;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,6 +28,7 @@ public class Paciente {
     private String cpf;
     private String email;
     private String telefone;
+    private Boolean ativo = true;
 
     @Embedded
     private Endereco endereco;
@@ -40,5 +38,26 @@ public class Paciente {
         this.cpf = dados.cpf();
         this.email = dados.email();
         this.telefone = dados.telefone();        
+        this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoPaciente dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.email() != null) {
+            this.email = dados.email();
+        }
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+        if (dados.endereco() != null) {
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
+    }
+
+    public void exclusaoLogica() {
+        this.ativo = false;
     }
 }
+
