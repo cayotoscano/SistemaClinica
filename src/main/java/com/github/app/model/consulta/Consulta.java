@@ -24,11 +24,11 @@ public class Consulta {
 
     @JoinColumn(name = "medico_id")
     @ManyToOne
-    private Medico medico;
+    private Integer medico;
 
     @JoinColumn(name = "paciente_id")
     @ManyToOne
-    private Paciente paciente;
+    private Integer paciente;
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -37,7 +37,13 @@ public class Consulta {
 
     private LocalDateTime data;
 
-
+    public Consulta(DadosAgendamentoConsulta dados) {
+        this.medico = dados.medicoId();
+        this.paciente = dados.pacienteId();
+        this.observacao = dados.observacao();
+        this.status = dados.status();
+        this.data = dados.data();
+    }
 
 
 
